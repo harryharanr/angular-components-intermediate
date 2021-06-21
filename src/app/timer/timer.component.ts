@@ -13,12 +13,21 @@ export class TimerComponent implements OnInit, OnDestroy {
   @Output() onComplete = new EventEmitter<void>();
   @Input() init:number = 20;
   private countdownEndSubscription: Subscription = new Subscription();
+  private countdownSubscription: Subscription = new Subscription();
+  public countdown: number = 0;
 
+  get progress() {
+    return (this.init-this.countdown)/this.init*100;
+  }
   constructor(public timerService: TimerService) {
     console.log('Timer Service Created!');
    }
 
   ngOnInit(): void {
+    this.countdownSubscription = this.timerService.countdown$.subscribe(data => {
+      this.countdown = data;
+    });
+
     this.timerService.restartCountdown(this.init);
 
     this.countdownEndSubscription = this.timerService.countdownEnd$.subscribe(() => {
@@ -29,6 +38,7 @@ export class TimerComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.timerService.destroy();
     this.countdownEndSubscription.unsubscribe();
+    this.countdownSubscription.unsubscribe();
   }
 
 }
