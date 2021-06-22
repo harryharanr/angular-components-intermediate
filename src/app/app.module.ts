@@ -5,16 +5,20 @@ import { AppComponent } from './app.component';
 import { DisplayComponent } from './display/display.component';
 import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 import { TimerComponent } from './timer/timer.component';
+import { AlertViewComponent } from './alert-view/alert-view.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     DisplayComponent,
     ProgressBarComponent,
-    TimerComponent
+    TimerComponent,
+    AlertViewComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
