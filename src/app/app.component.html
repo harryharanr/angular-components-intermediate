@@ -6,13 +6,14 @@
 
   <button class="add" (click)="showAddTimer()">+</button>
 
-  <app-alert-view 
-    [hidden]="!isAddTimerVisible" 
-    (onCancel)="hideAddTimer()" 
-    (onSubmit)="hideAddTimer()">
+  <app-alert-view [hidden]="!isAddTimerVisible">
+    
+    <h3> Add Timer </h3>
 
-    <label for="">Set the number of seconds of your timer</label>
+    <label>Set the number of seconds of your timer</label>
     <input type="number" [(ngModel)]="time">
 
+    <button (click)="hideAddTimer()" class="cancel-button">Cancel</button>
+    <button>Ok</button>
   </app-alert-view>
 </div>
