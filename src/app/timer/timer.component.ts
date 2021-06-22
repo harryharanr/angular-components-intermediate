@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Output, EventEmitter, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { TimerService } from './timer.service';
 
@@ -6,7 +6,8 @@ import { TimerService } from './timer.service';
   selector: 'app-timer',
   templateUrl: './timer.component.html',
   styleUrls: ['./timer.component.scss'],
-  providers: [TimerService]
+  providers: [TimerService],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TimerComponent implements OnInit, OnDestroy {
 
@@ -17,15 +18,17 @@ export class TimerComponent implements OnInit, OnDestroy {
   public countdown: number = 0;
 
   get progress() {
+    console.log("getting progress");
     return (this.init-this.countdown)/this.init*100;
   }
-  constructor(public timerService: TimerService) {
+  constructor(public timerService: TimerService, private cdRef: ChangeDetectorRef) {
     console.log('Timer Service Created!');
    }
 
   ngOnInit(): void {
     this.countdownSubscription = this.timerService.countdown$.subscribe(data => {
       this.countdown = data;
+      this.cdRef.markForCheck();
     });
 
     this.timerService.restartCountdown(this.init);
