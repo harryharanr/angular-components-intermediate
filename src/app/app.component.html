@@ -1,19 +1,22 @@
 <div>
   <h1>Timers</h1>
-  <app-timer [init]="3" (onComplete)="logCountDownEnd()"></app-timer>
-  <app-timer [init]="65" (onComplete)="logCountDownEnd()"></app-timer>
-  <app-timer [init]="185" (onComplete)="logCountDownEnd()"></app-timer>
+  <app-timer *ngFor="let timer of timers" [init]="timer" (onComplete)="showEndTimerAlert()"></app-timer>
 
   <button class="add" (click)="showAddTimer()">+</button>
 
   <app-alert-view [hidden]="!isAddTimerVisible">
-    
     <h3> Add Timer </h3>
-
     <label>Set the number of seconds of your timer</label>
     <input type="number" [(ngModel)]="time">
-
     <button (click)="hideAddTimer()" class="cancel-button">Cancel</button>
-    <button>Ok</button>
+    <button (click)="submitAddTimer()">Ok</button>
   </app-alert-view>
+
+  <app-alert-view [hidden]="!isEndTimerAlertVisible">
+    <h3> Timer Ended </h3>
+    <div>Your countdoown has finished</div>
+    <button (click)="hideEndTimerAlert()">Ok</button>
+  </app-alert-view>
+
+
 </div>
