@@ -9,6 +9,7 @@ import { AlertViewComponent } from './alert-view/alert-view.component';
 import { FormsModule } from '@angular/forms';
 import { TabComponent } from './tab/tab.component';
 import { TabsComponent } from './tabs/tabs.component';
+import { SimpleAlertViewComponent } from './simple-alert-view/simple-alert-view.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { TabsComponent } from './tabs/tabs.component';
     TimerComponent,
     AlertViewComponent,
     TabComponent,
-    TabsComponent
+    TabsComponent,
+    SimpleAlertViewComponent
   ],
   imports: [
     BrowserModule,
