@@ -1,4 +1,4 @@
-import { Component, ViewChild, ViewChildren, QueryList,  AfterContentInit, AfterViewInit, ChangeDetectorRef, ElementRef, Renderer2 } from '@angular/core';
+import { Component, ViewChild, AfterContentInit, AfterViewInit, ElementRef, Renderer2 } from '@angular/core';
 import { SimpleAlertViewComponent } from './simple-alert-view/simple-alert-view.component';
 
 @Component({
@@ -11,10 +11,9 @@ export class AppComponent implements AfterContentInit, AfterViewInit {
   public time: number = 0;
   public timers: Array<number> = [];
 
-  @ViewChildren(SimpleAlertViewComponent) simpleAlerts: QueryList<SimpleAlertViewComponent>;
   @ViewChild('timerInput') timerInput: ElementRef;
 
-  constructor(private cdRef: ChangeDetectorRef, private renderer: Renderer2) {
+  constructor(private renderer: Renderer2) {
     this.timers = [3, 3, 185];
   }
 
@@ -25,16 +24,7 @@ export class AppComponent implements AfterContentInit, AfterViewInit {
 
     // this.timerInput.nativeElement.setAttribute("placeholder","Enter Seconds");
     // this.timerInput.nativeElement.classList.add("time-in");
-    this.simpleAlerts.forEach(item => {
-      if(!item.title) {
-        item.title = 'Hi';
-        item.message = 'Hello World';
-        item.show();
-      }
-      console.log(item);
-    });
 
-    this.cdRef.detectChanges();
   }
 
   ngAfterContentInit() {
@@ -57,7 +47,7 @@ export class AppComponent implements AfterContentInit, AfterViewInit {
   }
 
   public showEndTimerAlert() {
-    this.simpleAlerts.first.show();
+    // this.simpleAlerts.first.show();
   }
 
   public submitAddTimer() {
