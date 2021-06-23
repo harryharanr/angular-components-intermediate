@@ -6,8 +6,8 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./simple-alert-view.component.scss']
 })
 export class SimpleAlertViewComponent {
-  public message: string;
-  public title: string;
+  @Input() public message: string;
+  @Input() public title: string;
   public visible: boolean = false;
 
   public dismiss() {
