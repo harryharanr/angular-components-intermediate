@@ -1,8 +1,19 @@
 <div>
-  <h1>Timers</h1>
-  <app-timer *ngFor="let timer of timers" [init]="timer" (onComplete)="showEndTimerAlert()"></app-timer>
+  
+  <app-tabs>
+    <app-tab [title]="'Timers'">
+      <app-timer *ngFor="let timer of timers" [init]="timer" (onComplete)="showEndTimerAlert()"></app-timer>
+      <button class="add" (click)="showAddTimer()">+</button>
+    </app-tab>
+    <app-tab [title]="'Alarm'">
+      <h3>Alarm - Not Available</h3>
+    </app-tab>
+    <app-tab [title]="'Stop Watch'">
+      <h3>Stop Watch - Not Available</h3>
+    </app-tab>
+  </app-tabs>
 
-  <button class="add" (click)="showAddTimer()">+</button>
+  
 
   <app-alert-view [hidden]="!isAddTimerVisible">
     <h3> Add Timer </h3>
